@@ -16,7 +16,7 @@ pygame.display.set_caption("""The caption""")
 FPS = 0  # | The FPS to use
 clock = pygame.time.Clock()
 
-pages = ["""The pages that are in this game"""]
+pages = ["MainMenu", "Play"]
 
 router = Router(screen)
 
@@ -30,7 +30,8 @@ while True:
     for event in pygame.event.get():
         action = page.handleEvent(event)
 
-        """Page changes go here"""
+        if action in pages:
+            page = router.route(action)
 
         Helpers.checkForQuit(event)
 

@@ -1,6 +1,7 @@
 #CK
 
 from pages.MainMenu import MainMenu
+from pages.Play import Play
 
 
 class Router:
@@ -8,7 +9,8 @@ class Router:
         self.screen = screen
         self.page = None
 
-        self.routes = {"MainMenu":self.createMainMenu}
+        self.routes = {"MainMenu":self.createMainMenu,
+                       "Play":self.createPlay}
 
     # | route()
     # |----------------------------------------------------
@@ -21,3 +23,6 @@ class Router:
 
     def createMainMenu(self):
         return MainMenu(self.screen, self.page)
+
+    def createPlay(self):
+        return Play(self.screen, self.page)
