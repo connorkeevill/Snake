@@ -3,7 +3,6 @@
 import pygame
 from src.objects.Title import Title
 
-
 pygame.init()
 
 # | Button()

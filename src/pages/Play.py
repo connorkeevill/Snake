@@ -12,7 +12,8 @@ class Play(Page):
         # |--------
         boardXpos = 20
         boardYpos = 20
-        self.board = Board(boardXpos, boardYpos)
+        boardDimensions = {'width':37, 'height':23}
+        self.board = Board(boardXpos, boardYpos, boardDimensions)
 
         self.addToObjects(self.board)
 

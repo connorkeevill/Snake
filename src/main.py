@@ -13,7 +13,7 @@ screenHeight = 600
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption("""The caption""")
 
-FPS = 0  # | The FPS to use
+FPS = 60  # | The FPS to use
 clock = pygame.time.Clock()
 
 pages = ["MainMenu", "Play"]

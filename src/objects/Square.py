@@ -4,8 +4,8 @@ import pygame
 from resources import colours
 
 class Square():
-    def __init__(self, xPos, yPos):
-        self.rect = pygame.Rect(xPos, yPos, 20, 20)
+    def __init__(self, xPos, yPos, sideLength):
+        self.rect = pygame.Rect(xPos, yPos, sideLength, sideLength)
 
         self.colour = colours.white
         self.hoverColour = colours.veryLightGrey
