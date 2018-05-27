@@ -1,6 +1,6 @@
 #CK
 
-from objects.Square import Square
+from objects.Space import Space
 
 class Board():
     def __init__(self, xPos, yPos, dimensions):
@@ -26,7 +26,7 @@ class Board():
             column = []
             for row in range(self.height):
                 rowYpos = self.xPos + (row * (20 + self.squareBuffer))
-                column.append(Square(columnXpos, rowYpos, self.squareSideLength))
+                column.append(Space(columnXpos, rowYpos, self.squareSideLength))
             self.squares.append(column)
 
     # | draw()
