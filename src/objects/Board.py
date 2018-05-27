@@ -21,13 +21,13 @@ class Board():
     # |----------------------------------------
     def populateSquares(self):
 
-        for row in range(self.height):
-            rowYpos = self.yPos + (row * (20 + self.squareBuffer))
-            row = []
-            for collumn in range(self.width):
-                collumnXpos = self.xPos + (collumn * (20 + self.squareBuffer))
-                row.append(Square(collumnXpos, rowYpos, self.squareSideLength))
-            self.squares.append(row)
+        for column in range(self.width):
+            columnXpos = self.yPos + (column * (20 + self.squareBuffer))
+            column = []
+            for row in range(self.height):
+                rowYpos = self.xPos + (row * (20 + self.squareBuffer))
+                column.append(Square(columnXpos, rowYpos, self.squareSideLength))
+            self.squares.append(column)
 
     # | draw()
     # |-------------------
@@ -43,6 +43,6 @@ class Board():
     # | Allows the squares to change colour with mouse movement.
     # |-------------------------------------------------------
     def hover(self, xMouse, yMouse):
-        for row in self.squares:
-            for collumn in row:
-                collumn.hover(xMouse, yMouse)
+        for column in self.squares:
+            for row in column:
+                row.hover(xMouse, yMouse)
