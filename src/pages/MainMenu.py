@@ -2,8 +2,8 @@
 
 from resources import colours
 from pages.Page import Page
-from objects.Button import Button
-from objects.Title import Title
+from objects.interfaceElements.Button import Button
+from objects.interfaceElements.Title import Title
 
 class MainMenu(Page):
     def __init__(self, surface, pageName):

@@ -24,8 +24,3 @@ class Play(Page):
         self.snake = Snake(snakeColumn, snakeRow, snakeSquares)
 
         self.addToObjects(self.board)
-
-    def handleEvent(self, event):
-        if event.type == pygame.MOUSEMOTION:
-            xMouse, yMouse = pygame.mouse.get_pos()
-            #self.board.hover(xMouse, yMouse)

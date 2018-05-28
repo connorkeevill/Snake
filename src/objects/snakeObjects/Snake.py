@@ -11,6 +11,11 @@ class Snake():
         self.body = []
         self.spawn(board)
 
+    # | spawn()
+    # |-----------------------------------------
+    # | Creates the snake's "head" and places
+    # | it into the board to begin the game
+    # |---------------------------------
     def spawn(self, board):
         head = Segment(self.column, self.row)
 

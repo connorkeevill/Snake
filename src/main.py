@@ -11,7 +11,7 @@ pygame.init()
 screenWidth = 900
 screenHeight = 600
 screen = pygame.display.set_mode((screenWidth, screenHeight))
-pygame.display.set_caption("""The caption""")
+pygame.display.set_caption("Snake")
 
 FPS = 60  # | The FPS to use
 clock = pygame.time.Clock()
