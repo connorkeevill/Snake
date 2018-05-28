@@ -1,6 +1,8 @@
 #CK
 
 import pygame
+import threading
+import time
 from pages.Page import Page
 from objects.Board import Board
 from objects.snakeObjects.Snake import Snake
@@ -25,6 +27,9 @@ class Play(Page):
 
         self.addToObjects(self.board)
 
+        snakeMover = threading.Thread(target=self.moveSnake)
+        snakeMover.start()
+
     # | update()
     # |--------------------------------------------------
     # | Code to update the page. Essentially code that
@@ -34,7 +39,15 @@ class Play(Page):
     # |-------------------------
     def update(self):
         self.changeSnakeDirection()
+
+    # | moveSnake()
+    # |-----------------------------------------------------
+    # | Method to be called in a thread to move the snake.
+    # |------------------------------------------------
+    def moveSnake(self):
         self.snake.move(self.board.squares)
+        time.sleep(0.25)
+        self.moveSnake()
 
     # | changeSnakeDirection()
     # |----------------------------------------
