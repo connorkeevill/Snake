@@ -1,6 +1,7 @@
 #CK
 
 from objects.snakeObjects.Segment import Segment
+from objects import Apple
 
 class Snake():
     def __init__(self, column, row, board):
@@ -11,6 +12,8 @@ class Snake():
         self.body = []
         self.placeHead(board)
 
+        self.lengthToGrow = 0
+
     # | placeHead()
     # |----------------------------------------
     # | Creates the snake's "head" and places
@@ -20,16 +23,39 @@ class Snake():
         head = Segment(self.column, self.row)
 
         self.body.append(head)
-        board[self.column][self.row].giveItem(head)
+        board.giveItem(head)
+
+    # | checkNextSpaceForItem()
+    # |-------------------------------------------------------
+    # | Checks for any items in the next space, handles the
+    # | event that the item should cause, and returns a
+    # | flag to indicate that something had been hit.
+    # |------------------------------------------
+    def checkNextSpaceForItem(self, board):
+        item = board.spaces[self.column][self.row].getItem()
+
+        try:
+            self.lengthToGrow += item.getEatenValue()
+            hit = True
+        except:
+            hit = False
+
+        return hit
 
     # | move()
-    # |-------------------------------------------
-    # | Moves the snake in its current direction.
-    # |----------------------------------------
+    # |--------------------------------------------------------
+    # | Moves the snake in its current direction and returns
+    # | a flag to indicate whether an item has been hit.
+    # |--------------------------------------------
     def move(self, board):
         self.moveTail(board)
         self.moveHead()
+
+        hit = self.checkNextSpaceForItem(board)
+
         self.placeHead(board)
+
+        return hit
 
     # | moveTail()
     # |--------------------------------------------------------
@@ -37,9 +63,12 @@ class Snake():
     # | the head to move to its next space of the board.
     # |--------------------------------------------
     def moveTail(self, board):
-        tailEnd = self.body[-1]
-        board[tailEnd.column][tailEnd.row].emptyContents()
-        self.body.pop(-1)
+        if self.lengthToGrow > 0:
+            self.lengthToGrow -= 1
+        else:
+            tailEnd = self.body[0]
+            board.emptySpaceWithItem(tailEnd)
+            del self.body[0]
 
     # | moveHead()
     # |-------------------------------------------------------
