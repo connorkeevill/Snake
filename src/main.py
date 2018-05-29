@@ -2,8 +2,8 @@
 
 import pygame
 import os
-from src import Helpers
-from src.Router import Router
+import Helpers
+from Router import Router
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # | This centers the window
 pygame.init()

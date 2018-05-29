@@ -1,7 +1,7 @@
 #CK
 
 import pygame
-from src.resources import colours
+from resources import colours
 
 # | Page()
 # |------------------------------------------
