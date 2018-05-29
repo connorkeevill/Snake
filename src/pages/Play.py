@@ -16,13 +16,13 @@ class Play(Page):
         # | Flag to indicate if the snake has hit an item (and therefore another needs to be placed)
         self.itemHit = False
         # | Time that is between each movement of the snake (in seconds)
-        self.movementInterval = 1 / 8
+        self.movementInterval = 1 / 12
 
         # | board
         # |--------
         boardXpos = 20
         boardYpos = 20
-        boardDimensions = {'width':37, 'height':23}
+        boardDimensions = {'width': 37, 'height': 23}
         self.board = Board(boardXpos, boardYpos, boardDimensions)
 
         # | snake
@@ -51,6 +51,7 @@ class Play(Page):
     def update(self):
         self.changeSnakeDirection()
 
+        # | Place a new item (i.e apple if an item is hit)
         if self.itemHit:
             self.placeNewItem()
 
@@ -59,13 +60,22 @@ class Play(Page):
     # | Places a new item in a random location on the board.
     # |---------------------------------------------------
     def placeNewItem(self):
-        column = random.randint(0, self.board.width - 1)
-        row = random.randint(0, self.board.height - 1)
+        spaceOccupied = True
+
+        # | Ensure that the new item is placed in an empty space
+        while spaceOccupied:
+            column = random.randint(0, self.board.width - 1)
+            row = random.randint(0, self.board.height - 1)
+
+            # | If the square is empty
+            if self.board.spaces[column][row].getItem() is None:
+                spaceOccupied = False
 
         item = Apple(column, row)
         self.board.giveItem(item)
         print("Apple Placed")
 
+        # | Reset the flag to place an item
         self.itemHit = False
 
     # | moveSnake()
@@ -73,9 +83,9 @@ class Play(Page):
     # | Method to be called in a thread to move the snake.
     # |------------------------------------------------
     def moveSnake(self):
-        self.itemHit = self.snake.move(self.board)
-        time.sleep(self.movementInterval)
-        self.moveSnake()
+        while True:
+            self.itemHit = self.snake.move(self.board)
+            time.sleep(self.movementInterval)
 
     # | changeSnakeDirection()
     # |----------------------------------------

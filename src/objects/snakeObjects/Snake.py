@@ -1,7 +1,6 @@
 #CK
 
 from objects.snakeObjects.Segment import Segment
-from objects import Apple
 
 class Snake():
     def __init__(self, column, row, board):
