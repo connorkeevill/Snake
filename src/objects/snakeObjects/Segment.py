@@ -13,3 +13,6 @@ class Segment(Item):
         Item.__init__(self, column, row)
 
         self.colour = colours.green
+
+    def hitSnake(self, snake):
+        snake.die()

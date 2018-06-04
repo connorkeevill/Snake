@@ -10,5 +10,10 @@ class Apple(Item):
         self.colour = colours.red
         self.eatenValue = 5
 
-    def getEatenValue(self):
-        return self.eatenValue
+    # | hitSnake()
+    # |----------------------------------------------------
+    # | Defines how the snake should act when it enters
+    # | a space containing and Apple() type item.
+    # |--------------------------------------
+    def hitSnake(self, snake):
+        snake.grow(self.eatenValue)

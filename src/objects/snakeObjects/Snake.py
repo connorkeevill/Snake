@@ -8,6 +8,8 @@ class Snake():
         self.row = row
         self.direction = 'down'
 
+        self.isAlive = True
+
         self.body = []
         self.placeHead(board)
 
@@ -31,13 +33,9 @@ class Snake():
     # | flag to indicate that something had been hit.
     # |------------------------------------------
     def checkNextSpaceForItem(self, board):
-        item = board.spaces[self.column][self.row].getItem()
+        space = board.spaces[self.column][self.row]
 
-        try:
-            self.lengthToGrow += item.getEatenValue()
-            hit = True
-        except:
-            hit = False
+        hit = space.enterSnake(self)
 
         return hit
 
@@ -93,3 +91,17 @@ class Snake():
 
         if newDirection in directions:
             self.direction = newDirection
+
+    # | die()
+    # |--------------------------------------------------------------
+    # | Kills the snake. Used when the snake hits itself or a wall.
+    # |---------------------------------------------------------
+    def die(self):
+        self.isAlive = False
+
+    # | grow()
+    # |------------------------------------------------
+    # | Grows the snake by the amount that is passed.
+    # |--------------------------------------------
+    def grow(self, amount):
+        self.lengthToGrow += amount

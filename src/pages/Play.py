@@ -68,12 +68,11 @@ class Play(Page):
             row = random.randint(0, self.board.height - 1)
 
             # | If the square is empty
-            if self.board.spaces[column][row].getItem() is None:
+            if self.board.spaces[column][row].isEmpty():
                 spaceOccupied = False
 
         item = Apple(column, row)
         self.board.giveItem(item)
-        print("Apple Placed")
 
         # | Reset the flag to place an item
         self.itemHit = False
@@ -83,7 +82,7 @@ class Play(Page):
     # | Method to be called in a thread to move the snake.
     # |------------------------------------------------
     def moveSnake(self):
-        while True:
+        while self.snake.isAlive:
             self.itemHit = self.snake.move(self.board)
             time.sleep(self.movementInterval)
 

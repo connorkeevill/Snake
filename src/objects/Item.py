@@ -21,3 +21,11 @@ class Item():
     # |---------------------------
     def draw(self, surface, rect):
         pygame.draw.rect(surface, self.colour, rect)
+
+    # | hitSnake()
+    # |------------------------------------------------
+    # | Place holder for the method that will handle
+    # | the event of the snake hitting the item.
+    # |--------------------------------------
+    def hitSnake(self, snake):
+        pass
