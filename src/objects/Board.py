@@ -1,6 +1,7 @@
 #CK
 
 from objects.Space import Space
+from objects.items.Wall import Wall
 
 class Board():
     def __init__(self, xPos, yPos, dimensions):
@@ -13,19 +14,33 @@ class Board():
         self.collectibles = 0
 
         self.squareSideLength = 20
-        self.squareBuffer = 3
+        self.squareBuffer = 2
 
         self.spaces = []
         self.createSpaces()
+        self.createWalls()
+
+    # | createWalls()
+    # |-----------------------------------------------------
+    # | Iterates through the spaces and fills all the edge
+    # | spaces with a wall item to create a border.
+    # |---------------------------------------
+    def createWalls(self):
+        for column in range(self.width):
+            for row in range(self.height):
+                if (column == 0) or (column == self.width - 1) or (row == 0) or (row == self.height - 1):
+                    wall = Wall(column, row)
+                    self.giveItem(wall)
+
 
     # | draw()
     # |-------------------
     # | Draws the board.
     # |---------------
     def draw(self, surface):
-        for row in self.spaces:
-            for collumn in row:
-                collumn.draw(surface)
+        for column in self.spaces:
+            for space in column:
+                space.draw(surface)
 
     # | createSpaces()
     # |----------------------------------------------------
