@@ -7,7 +7,7 @@ import random
 from pages.Page import Page
 from objects.Board import Board
 from objects.snakeObjects.Snake import Snake
-from objects.Apple import Apple
+from objects.items.Apple import Apple
 
 class Play(Page):
     def __init__(self, surface, pageName):
@@ -51,8 +51,8 @@ class Play(Page):
     def update(self):
         self.changeSnakeDirection()
 
-        # | Place a new item (i.e apple if an item is hit)
-        if self.itemHit:
+        # | If there is less than one collectible on the board, place another
+        if self.board.collectibles < 1:
             self.placeNewItem()
 
     # | placeNewItem()
@@ -68,7 +68,7 @@ class Play(Page):
             row = random.randint(0, self.board.height - 1)
 
             # | If the square is empty
-            if self.board.spaces[column][row].isEmpty():
+            if self.board.getSpace(column, row).isEmpty():
                 spaceOccupied = False
 
         item = Apple(column, row)
@@ -83,7 +83,7 @@ class Play(Page):
     # |------------------------------------------------
     def moveSnake(self):
         while self.snake.isAlive:
-            self.itemHit = self.snake.move(self.board)
+            self.snake.move(self.board)
             time.sleep(self.movementInterval)
 
     # | changeSnakeDirection()

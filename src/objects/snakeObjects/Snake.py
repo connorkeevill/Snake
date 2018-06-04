@@ -29,30 +29,24 @@ class Snake():
     # | checkNextSpaceForItem()
     # |-------------------------------------------------------
     # | Checks for any items in the next space, handles the
-    # | event that the item should cause, and returns a
-    # | flag to indicate that something had been hit.
+    # | effect that the item might have on the snake.
     # |------------------------------------------
     def checkNextSpaceForItem(self, board):
-        space = board.spaces[self.column][self.row]
+        space = board.getSnakeEnteredSpace(self.column, self.row)
 
-        hit = space.enterSnake(self)
-
-        return hit
+        space.enterSnake(self)
 
     # | move()
-    # |--------------------------------------------------------
-    # | Moves the snake in its current direction and returns
-    # | a flag to indicate whether an item has been hit.
     # |--------------------------------------------
+    # | Moves the snake in its current direction.
+    # |----------------------------------------
     def move(self, board):
         self.moveTail(board)
         self.moveHead()
 
-        hit = self.checkNextSpaceForItem(board)
+        self.checkNextSpaceForItem(board)
 
         self.placeHead(board)
-
-        return hit
 
     # | moveTail()
     # |--------------------------------------------------------

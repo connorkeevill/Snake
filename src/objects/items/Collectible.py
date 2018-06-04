@@ -1,19 +1,19 @@
-#CK
+# CK
 
-from objects.Item import Item
-from resources import colours
+from objects.items.Item import Item
 
-class Apple(Item):
+class Collectible(Item):
     def __init__(self, column, row):
         Item.__init__(self, column, row)
 
-        self.colour = colours.red
-        self.eatenValue = 5
+        self.eatenValue = 0
+
+        self.type = 'collectible'
 
     # | hitSnake()
     # |----------------------------------------------------
     # | Defines how the snake should act when it enters
-    # | a space containing and Apple() type item.
+    # | a space containing a Collectible type item.
     # |--------------------------------------
     def hitSnake(self, snake):
         snake.grow(self.eatenValue)

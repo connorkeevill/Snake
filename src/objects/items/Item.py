@@ -15,6 +15,8 @@ class Item():
 
         self.colour = colours.white
 
+        self.type = None
+
     # | draw()
     # |----------------------------------
     # | Draws the item to the screen.
