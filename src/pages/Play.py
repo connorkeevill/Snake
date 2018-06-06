@@ -43,6 +43,10 @@ class Play(Page):
         snakeMover = threading.Thread(target=self.moveSnake)
         snakeMover.start()
 
+        # | Start the thread that places items in the board
+        itemPlacer = threading.Thread(target=self.placeItems)
+        itemPlacer.start()
+
     # | update()
     # |--------------------------------------------------
     # | Code to update the page. Essentially code that
@@ -103,3 +107,18 @@ class Play(Page):
             self.snake.changeDirection('right')
         elif keys[pygame.K_LEFT]:
             self.snake.changeDirection('left')
+
+    # | placeItem()
+    # |----------------------------------------------------
+    # | Makes a random decision to place an item on the
+    # | board every random interval (between 1 and 5
+    # | seconds, with a 1 in 5 chance each time).
+    # |-------------------------------------
+    def placeItems(self):
+        while self.snake.isAlive:
+            timeToWait = random.randint(1, 5)
+            chance = random.randint(1, 5)
+            print(chance)
+            if chance == 1:
+                self.placeNewItem()
+            time.sleep(timeToWait)
