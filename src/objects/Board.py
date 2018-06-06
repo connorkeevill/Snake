@@ -4,17 +4,16 @@ from objects.Space import Space
 from objects.items.Wall import Wall
 
 class Board():
-    def __init__(self, xPos, yPos, dimensions):
+    def __init__(self, xPos, yPos, dimensions, spaceSideLength, spaceBuffer):
         self.xPos = xPos
         self.yPos = yPos
         self.width = dimensions['width']
         self.height = dimensions['height']
+        self.spaceSideLength = spaceSideLength
+        self.spaceBuffer = spaceBuffer
 
         # | Integer to count the number of collectible item that the board has
         self.collectibles = 0
-
-        self.squareSideLength = 20
-        self.squareBuffer = 2
 
         self.spaces = []
         self.createSpaces()
@@ -49,11 +48,11 @@ class Board():
     # |----------------------------------------
     def createSpaces(self):
         for column in range(self.width):
-            columnXpos = self.yPos + (column * (20 + self.squareBuffer))
+            columnXpos = self.yPos + (column * (self.spaceSideLength + self.spaceBuffer))
             column = []
             for row in range(self.height):
-                rowYpos = self.xPos + (row * (20 + self.squareBuffer))
-                column.append(Space(columnXpos, rowYpos, self.squareSideLength))
+                rowYpos = self.xPos + (row * (self.spaceSideLength + self.spaceBuffer))
+                column.append(Space(columnXpos, rowYpos, self.spaceSideLength))
             self.spaces.append(column)
 
     # | giveItem()

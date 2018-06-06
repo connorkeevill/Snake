@@ -16,14 +16,16 @@ class Play(Page):
         # | Flag to indicate if the snake has hit an item (and therefore another needs to be placed)
         self.itemHit = False
         # | Time that is between each movement of the snake (in seconds)
-        self.movementInterval = 1 / 12
+        self.movementInterval = 1 / 14
 
         # | board
         # |--------
         boardXpos = 20
         boardYpos = 20
-        boardDimensions = {'width': 37, 'height': 23}
-        self.board = Board(boardXpos, boardYpos, boardDimensions)
+        boardDimensions = {'width': 48, 'height': 28}
+        boardSpaceSideLength = 17
+        boardSpaceBuffer = 1
+        self.board = Board(boardXpos, boardYpos, boardDimensions, boardSpaceSideLength, boardSpaceBuffer)
 
         # | snake
         # |--------
