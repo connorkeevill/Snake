@@ -118,7 +118,6 @@ class Play(Page):
         while self.snake.isAlive:
             timeToWait = random.randint(1, 5)
             chance = random.randint(1, 5)
-            print(chance)
             if chance == 1:
                 self.placeNewItem()
             time.sleep(timeToWait)
