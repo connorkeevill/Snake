@@ -1,19 +1,24 @@
 #CK
 
 from objects.snakeObjects.Segment import Segment
+import random
 
 class Snake():
     def __init__(self, column, row, board):
         self.column = column
         self.row = row
-        self.direction = 'down'
+        self.direction = ''
 
         self.isAlive = True
+        self.directions = ['down', 'up', 'right', 'left']
 
         self.body = []
         self.placeHead(board)
 
         self.lengthToGrow = 0
+
+        self.chooseDirection()
+
 
     # | placeHead()
     # |----------------------------------------
@@ -81,12 +86,11 @@ class Snake():
     # | Changes the direction of the snake's movement.
     # |---------------------------------------------
     def changeDirection(self, newDirection):
-        directions = ['down', 'up', 'right', 'left']
 
         # | This dictionary contains all of the opposing pairs to allow the snake to
         opposites = {'left':'right', 'right':'left', 'up':'down', 'down':'up'}
 
-        validDirection = newDirection in directions
+        validDirection = newDirection in self.directions
         oppositeDirection = newDirection == opposites[self.direction]
         noBodyToHit = len(self.body) == 1
 
@@ -106,3 +110,10 @@ class Snake():
     # |--------------------------------------------
     def grow(self, amount):
         self.lengthToGrow += amount
+
+    # | chooseDirection()
+    # |------------------------------------------------------
+    # | Selects a random direction of travel for the snake.
+    # |-------------------------------------------------
+    def chooseDirection(self):
+        self.direction = random.choice(self.directions)
