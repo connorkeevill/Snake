@@ -83,7 +83,14 @@ class Snake():
     def changeDirection(self, newDirection):
         directions = ['down', 'up', 'right', 'left']
 
-        if newDirection in directions:
+        # | This dictionary contains all of the opposing pairs to allow the snake to
+        opposites = {'left':'right', 'right':'left', 'up':'down', 'down':'up'}
+
+        validDirection = newDirection in directions
+        oppositeDirection = newDirection == opposites[self.direction]
+        noBodyToHit = len(self.body) == 1
+
+        if validDirection and (not oppositeDirection or noBodyToHit):
             self.direction = newDirection
 
     # | die()
