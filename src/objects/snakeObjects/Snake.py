@@ -15,10 +15,10 @@ class Snake():
         self.body = []
         self.placeHead(board)
 
+        self.score = 0
         self.lengthToGrow = 0
 
         self.chooseDirection()
-
 
     # | placeHead()
     # |----------------------------------------
@@ -110,6 +110,20 @@ class Snake():
     # |--------------------------------------------
     def grow(self, amount):
         self.lengthToGrow += amount
+
+    # | giveScore()
+    # |-------------------------------------------------------
+    # | Takes a value and increases the snake's score by it.
+    # |--------------------------------------------------
+    def giveScore(self, amount):
+        self.score += amount
+
+    # | getScore()
+    # |-----------------------------
+    # | Returns the snake's score.
+    # |------------------------
+    def getScore(self):
+        return self.score
 
     # | chooseDirection()
     # |------------------------------------------------------

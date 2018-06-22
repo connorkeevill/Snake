@@ -31,18 +31,13 @@ class Space():
     # | enterSnake()
     # |------------------------------------------------------------------
     # | Called when the snake enters the space. Takes the snake object
-    # | and passes it into the space's item to handle what needs to
-    # | happen to the snake for meeting that item. Also returns a
-    # | flag indicating if the snake has hit an empty space.
-    # |-------------------------------------------------
+    # | and passes it into the space's item to handle what needs
+    # | to happen to the snake when meeting that item.
+    # |--------------------------------------
     def enterSnake(self, snake):
         # | If the space contains an item
         if not self.isEmpty():
             self.item.hitSnake(snake)
-            return True
-
-        # | If the space was empty
-        return False
 
     # | emptyContents()
     # |-------------------------------------

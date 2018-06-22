@@ -9,3 +9,4 @@ class Apple(Collectible):
 
         self.colour = colours.red
         self.eatenValue = 5
+        self.scoreValue = 1

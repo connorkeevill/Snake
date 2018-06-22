@@ -8,6 +8,7 @@ from pages.Page import Page
 from objects.Board import Board
 from objects.snakeObjects.Snake import Snake
 from objects.items.Apple import Apple
+from objects.interfaceElements.Title import Title
 
 class Play(Page):
     def __init__(self, surface, pageName):
@@ -34,7 +35,16 @@ class Play(Page):
         snakeSquares = self.board
         self.snake = Snake(snakeColumn, snakeRow, snakeSquares)
 
-        self.addToObjects(self.board)
+        # | score
+        # |--------
+        self.playerScore = 0
+        scoreXpos = 100
+        scoreYpos = 550
+        scoreText = "Score: " + str(self.playerScore)
+        scoreTextSize = 28
+        self.score = Title(scoreXpos, scoreYpos, scoreText, scoreTextSize)
+
+        self.addToObjects([self.board, self.score])
 
         # | Place the first item
         self.placeNewItem()
@@ -60,6 +70,10 @@ class Play(Page):
         # | If there is less than one collectible on the board, place another
         if self.board.collectibles < 1:
             self.placeNewItem()
+
+        if self.playerScore != self.snake.getScore():
+            self.playerScore = self.snake.getScore()
+            self.score.changeText("Score: " + str(self.playerScore))
 
     # | placeNewItem()
     # |------------------------------------------------------
