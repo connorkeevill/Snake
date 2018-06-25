@@ -9,11 +9,15 @@ from objects.Board import Board
 from objects.snakeObjects.Snake import Snake
 from objects.items.Apple import Apple
 from objects.interfaceElements.Title import Title
+from objects.interfaceElements.Button import Button
+from resources import colours
 
 class Play(Page):
     def __init__(self, surface, pageName):
         Page.__init__(self, surface, pageName)
 
+        # | Flag to indicate whether the game is over or not
+        self.gameOver = False
         # | Flag to indicate if the snake has hit an item (and therefore another needs to be placed)
         self.itemHit = False
         # | Time that is between each movement of the snake (in seconds)
@@ -35,16 +39,16 @@ class Play(Page):
         snakeSquares = self.board
         self.snake = Snake(snakeColumn, snakeRow, snakeSquares)
 
-        # | score
+        # | ttlScore
         # |--------
         self.playerScore = 0
-        scoreXpos = 100
-        scoreYpos = 550
-        scoreText = "Score: " + str(self.playerScore)
-        scoreTextSize = 28
-        self.score = Title(scoreXpos, scoreYpos, scoreText, scoreTextSize)
+        ttlScoreXpos = 100
+        ttlScoreYpos = 550
+        ttlScoreText = "Score: " + str(self.playerScore)
+        ttlScoreTextSize = 28
+        self.ttlScore = Title(ttlScoreXpos, ttlScoreYpos, ttlScoreText, ttlScoreTextSize)
 
-        self.addToObjects([self.board, self.score])
+        self.addToObjects([self.board, self.ttlScore])
 
         # | Place the first item
         self.placeNewItem()
@@ -73,7 +77,11 @@ class Play(Page):
 
         if self.playerScore != self.snake.getScore():
             self.playerScore = self.snake.getScore()
-            self.score.changeText("Score: " + str(self.playerScore))
+            self.ttlScore.changeText("Score: " + str(self.playerScore))
+
+        if not self.snake.isAlive and not self.gameOver:
+            self.showGameOver()
+
 
     # | placeNewItem()
     # |------------------------------------------------------
@@ -135,3 +143,33 @@ class Play(Page):
             if chance == 1:
                 self.placeNewItem()
             time.sleep(timeToWait)
+
+    def showGameOver(self):
+        self.gameOver = True
+
+        # | btnPlayAgain
+        # | --------------
+        btnPlayAgainXpos = 600
+        btnPlayAgainYpos = 560
+        btnPlayAgainDmensions = {'width':300, 'height':50}
+        btnPlayAgainColour = colours.buttonColour
+        btnPlayAgainHoverColour = colours.buttonHoverColour
+        btnPlayAgainAction = "Play"
+        btnPlayAgainText = "Play again"
+        btnPlayAgainTextSize = 28
+        btnPlayAgainTextColour = colours.white
+        btnPlayAgain = Button(btnPlayAgainXpos, btnPlayAgainYpos, btnPlayAgainDmensions, btnPlayAgainColour,
+                              btnPlayAgainHoverColour, btnPlayAgainAction, btnPlayAgainText, btnPlayAgainTextSize, btnPlayAgainTextColour)
+
+        # # | ttlGameOver
+        # # |--------------
+        # ttlGameOverXpos = 400
+        # ttlGameOverYpos = 250
+        # ttlGameOverText = "Game Over!"
+        # ttlGameOverTextSize = 28
+        # ttlGameOver = Title(ttlGameOverXpos, ttlGameOverYpos, ttlGameOverText, ttlGameOverTextSize)
+
+        self.addToObjects([btnPlayAgain])
+        self.addToButtons(btnPlayAgain)
+
+

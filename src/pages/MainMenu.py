@@ -14,8 +14,8 @@ class MainMenu(Page):
         btnPlayXpos = 450
         btnPlayYpos = 350
         btnPlayDimensions = {"width": 250, "height": 100}
-        btnPlayColour = colours.red
-        btnPlayHoverColour = colours.blue
+        btnPlayColour = colours.buttonColour
+        btnPlayHoverColour = colours.buttonHoverColour
         btnPlayAction = "Play"
         btnPlayText = "Play"
         btnPlayTextSize = 28

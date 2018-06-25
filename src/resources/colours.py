@@ -9,3 +9,7 @@ blue = (0, 0, 255)
 grey = (50, 50, 50)
 lightGrey = (100, 100, 100)
 veryLightGrey = (200, 200, 200)
+
+# | UI defaults
+buttonColour = lightGrey
+buttonHoverColour = veryLightGrey
