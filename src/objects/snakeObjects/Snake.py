@@ -1,7 +1,9 @@
 #CK
 
+import pygame
 from objects.snakeObjects.Segment import Segment
 import random
+from resources import Globals
 
 class Snake():
     def __init__(self, column, row, board):
@@ -102,6 +104,10 @@ class Snake():
     # | Kills the snake. Used when the snake hits itself or a wall.
     # |---------------------------------------------------------
     def die(self):
+        DEADSNAKE = Globals.DEADSNAKE
+        deathEvent = pygame.event.Event(DEADSNAKE)
+        pygame.event.post(deathEvent)
+
         self.isAlive = False
 
     # | grow()

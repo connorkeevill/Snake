@@ -16,7 +16,7 @@ pygame.display.set_caption("Snake")
 FPS = 60  # | The FPS to use
 clock = pygame.time.Clock()
 
-pages = ["MainMenu", "Play"]
+pages = ["MainMenu", "Play", "GameOver"]
 
 router = Router(screen)
 

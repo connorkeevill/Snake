@@ -9,8 +9,7 @@ from objects.Board import Board
 from objects.snakeObjects.Snake import Snake
 from objects.items.Apple import Apple
 from objects.interfaceElements.Title import Title
-from objects.interfaceElements.Button import Button
-from resources import colours
+from resources import Globals
 
 class Play(Page):
     def __init__(self, surface, pageName):
@@ -55,10 +54,12 @@ class Play(Page):
 
         # | Start thread that moves the snake
         snakeMover = threading.Thread(target=self.moveSnake)
+        snakeMover.setDaemon(True) # | Daemonic thread to prevent this thread keeping the program alive
         snakeMover.start()
 
         # | Start the thread that places items in the board
         itemPlacer = threading.Thread(target=self.placeItems)
+        itemPlacer.setDaemon(True) # | Daemonic thread to prevent this thread keeping the program alive
         itemPlacer.start()
 
     # | update()
@@ -79,9 +80,18 @@ class Play(Page):
             self.playerScore = self.snake.getScore()
             self.ttlScore.changeText("Score: " + str(self.playerScore))
 
-        if not self.snake.isAlive and not self.gameOver:
-            self.showGameOver()
+    # | handleEvent()
+    # |------------------------------------------------------------
+    # | Checks for the special case event of the snake dying, and
+    # | returns the appropriate value to indicate what happened.
+    # |-------------------------------------------------------
+    def handleEvent(self, event):
+        if event.type == Globals.DEADSNAKE:
+            action = "GameOver"
+        else:
+            action = Page.handleEvent(self, event)
 
+        return action
 
     # | placeNewItem()
     # |------------------------------------------------------
@@ -143,33 +153,4 @@ class Play(Page):
             if chance == 1:
                 self.placeNewItem()
             time.sleep(timeToWait)
-
-    def showGameOver(self):
-        self.gameOver = True
-
-        # | btnPlayAgain
-        # | --------------
-        btnPlayAgainXpos = 600
-        btnPlayAgainYpos = 560
-        btnPlayAgainDmensions = {'width':300, 'height':50}
-        btnPlayAgainColour = colours.buttonColour
-        btnPlayAgainHoverColour = colours.buttonHoverColour
-        btnPlayAgainAction = "Play"
-        btnPlayAgainText = "Play again"
-        btnPlayAgainTextSize = 28
-        btnPlayAgainTextColour = colours.white
-        btnPlayAgain = Button(btnPlayAgainXpos, btnPlayAgainYpos, btnPlayAgainDmensions, btnPlayAgainColour,
-                              btnPlayAgainHoverColour, btnPlayAgainAction, btnPlayAgainText, btnPlayAgainTextSize, btnPlayAgainTextColour)
-
-        # # | ttlGameOver
-        # # |--------------
-        # ttlGameOverXpos = 400
-        # ttlGameOverYpos = 250
-        # ttlGameOverText = "Game Over!"
-        # ttlGameOverTextSize = 28
-        # ttlGameOver = Title(ttlGameOverXpos, ttlGameOverYpos, ttlGameOverText, ttlGameOverTextSize)
-
-        self.addToObjects([btnPlayAgain])
-        self.addToButtons(btnPlayAgain)
-
 
