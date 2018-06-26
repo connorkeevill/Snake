@@ -33,8 +33,8 @@ class Play(Page):
 
         # | snake
         # |--------
-        snakeColumn = 10
-        snakeRow = 10
+        snakeColumn = self.board.width // 2
+        snakeRow = self.board.height // 2
         snakeSquares = self.board
         self.snake = Snake(snakeColumn, snakeRow, snakeSquares)
 
