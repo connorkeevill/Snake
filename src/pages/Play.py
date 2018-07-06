@@ -10,6 +10,8 @@ from objects.snakeObjects.Snake import Snake
 from objects.items.Apple import Apple
 from objects.interfaceElements.Title import Title
 from resources import Globals
+from resources import colours
+from objects.interfaceElements.Button import Button
 
 class Play(Page):
     def __init__(self, surface, pageName):
@@ -47,7 +49,22 @@ class Play(Page):
         ttlScoreTextSize = 28
         self.ttlScore = Title(ttlScoreXpos, ttlScoreYpos, ttlScoreText, ttlScoreTextSize)
 
-        self.addToObjects([self.board, self.ttlScore])
+        # | btnPause
+        # |-----------
+        btnPauseXpos = self.surface.get_width() // 2
+        btnPauseYpos = self.surface.get_height() - 70
+        btnPauseDimensions = {'width':50, 'height':50}
+        btnPauseColour = colours.buttonColour
+        btnPauseHoverColour = colours.buttonHoverColour
+        btnPauseAction = "Pause"
+        btnPauseText = "||"
+        btnPauseTextSize = 34
+        btnPauseTextColour = colours.white
+        self.btnPause = Button(btnPauseXpos, btnPauseYpos, btnPauseDimensions, btnPauseColour, btnPauseHoverColour,
+                          btnPauseAction, btnPauseText, btnPauseTextSize, btnPauseTextColour)
+
+        self.addToObjects([self.board, self.ttlScore, self.btnPause])
+        self.addToButtons(self.btnPause)
 
         # | Place the first item
         self.placeNewItem()
@@ -121,8 +138,9 @@ class Play(Page):
     # |------------------------------------------------
     def moveSnake(self):
         while self.snake.isAlive:
-            self.snake.move(self.board)
-            time.sleep(self.movementInterval)
+            if not self.paused:
+                self.snake.move(self.board)
+                time.sleep(self.movementInterval)
 
     # | changeSnakeDirection()
     # |----------------------------------------
@@ -148,9 +166,10 @@ class Play(Page):
     # |-------------------------------------
     def placeItems(self):
         while self.snake.isAlive:
-            timeToWait = random.randint(1, 5)
-            chance = random.randint(1, 5)
-            if chance == 1:
-                self.placeNewItem()
-            time.sleep(timeToWait)
+            if not self.paused:
+                timeToWait = random.randint(1, 5)
+                chance = random.randint(1, 5)
+                if chance == 1:
+                    self.placeNewItem()
+                time.sleep(timeToWait)
 

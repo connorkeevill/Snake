@@ -2,6 +2,7 @@
 
 from pages.MainMenu import MainMenu
 from pages.Play import Play
+from pages.Pause import Pause
 from pages.GameOver import GameOver
 
 
@@ -12,6 +13,7 @@ class Router:
 
         self.routes = {"MainMenu":self.createMainMenu,
                        "Play":self.createPlay,
+                       "Pause":self.createPause,
                        "GameOver":self.createGameOver}
 
     # | route()
@@ -28,6 +30,9 @@ class Router:
 
     def createPlay(self):
         return Play(self.screen, self.page)
+
+    def createPause(self):
+        return Pause(self.screen, self.page)
 
     def createGameOver(self):
         return GameOver(self.screen, self.page)

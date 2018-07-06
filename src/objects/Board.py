@@ -31,7 +31,6 @@ class Board():
                     wall = Wall(column, row)
                     self.giveItem(wall)
 
-
     # | draw()
     # |-------------------
     # | Draws the board.

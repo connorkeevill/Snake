@@ -16,7 +16,7 @@ pygame.display.set_caption("Snake")
 FPS = 60  # | The FPS to use
 clock = pygame.time.Clock()
 
-pages = ["MainMenu", "Play", "GameOver"]
+pages = ["MainMenu", "Play", "Pause", "GameOver"]
 
 router = Router(screen)
 
@@ -31,7 +31,15 @@ while True:
         action = page.handleEvent(event)
 
         if action in pages:
+            if action == "Pause":
+                page.pause()
+                pageToResume = page
+
             page = router.route(action)
+
+        elif action == "Resume":
+            page = pageToResume
+            page.unpause()
 
         Helpers.checkForQuit(event)
 

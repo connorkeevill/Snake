@@ -12,6 +12,10 @@ class Page():
         self.surface = surface
         self.pageName = pageName
 
+        # | Though not needed for all pages, ones which use threads will need a way of letting them know
+        # | that the page is paused, as they are not relates to any of the update() calls in main.py
+        self.paused = False
+
         self.objects = []
         self.buttons = []
 
@@ -62,6 +66,20 @@ class Page():
                     action = button.getAction()
 
         return action
+
+    # | pause()
+    # |--------------------------------------
+    # | Changes the pause flag to be true.
+    # |---------------------------------
+    def pause(self):
+        self.paused = True
+
+    # | unpause()
+    # |---------------------------------------
+    # | Changes the paused flag to show false
+    # |-----------------------------------
+    def unpause(self):
+        self.paused = False
 
     # | addToObjects()
     # |------------------------------------------
