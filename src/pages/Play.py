@@ -52,7 +52,7 @@ class Play(Page):
         # | btnPause
         # |-----------
         btnPauseXpos = self.surface.get_width() // 2
-        btnPauseYpos = self.surface.get_height() - 70
+        btnPauseYpos = self.surface.get_height() - 40
         btnPauseDimensions = {'width':50, 'height':50}
         btnPauseColour = colours.buttonColour
         btnPauseHoverColour = colours.buttonHoverColour
