@@ -87,8 +87,6 @@ class Play(Page):
     # | be ran each loop of the game.
     # |-------------------------
     def update(self):
-        self.changeSnakeDirection()
-
         # | If there is less than one collectible on the board, place another
         if self.board.collectibles < 1:
             self.placeNewItem()
@@ -103,8 +101,12 @@ class Play(Page):
     # | returns the appropriate value to indicate what happened.
     # |-------------------------------------------------------
     def handleEvent(self, event):
+        action = None
+
         if event.type == Globals.DEADSNAKE:
             action = "GameOver"
+        elif event.type == pygame.KEYDOWN:
+            self.changeSnakeDirection(event)
         else:
             action = Page.handleEvent(self, event)
 
@@ -147,16 +149,11 @@ class Play(Page):
     # | Changes the direction the snake moves
     # | based on the keys that are pressed.
     # |---------------------------------
-    def changeSnakeDirection(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_DOWN]:
-            self.snake.changeDirection('down')
-        elif keys[pygame.K_UP]:
-            self.snake.changeDirection('up')
-        elif keys[pygame.K_RIGHT]:
-            self.snake.changeDirection('right')
-        elif keys[pygame.K_LEFT]:
-            self.snake.changeDirection('left')
+    def changeSnakeDirection(self, event):
+        if event.key == pygame.K_DOWN: self.snake.changeDirection('down')
+        elif event.key == pygame.K_UP: self.snake.changeDirection('up')
+        elif event.key == pygame.K_RIGHT: self.snake.changeDirection('right')
+        elif event.key == pygame.K_LEFT: self.snake.changeDirection('left')
 
     # | placeItem()
     # |----------------------------------------------------
@@ -172,4 +169,3 @@ class Play(Page):
                 if chance == 1:
                     self.placeNewItem()
                 time.sleep(timeToWait)
-

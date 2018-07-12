@@ -88,16 +88,38 @@ class Snake():
     # | Changes the direction of the snake's movement.
     # |---------------------------------------------
     def changeDirection(self, newDirection):
-
-        # | This dictionary contains all of the opposing pairs to allow the snake to
-        opposites = {'left':'right', 'right':'left', 'up':'down', 'down':'up'}
-
-        validDirection = newDirection in self.directions
-        oppositeDirection = newDirection == opposites[self.direction]
-        noBodyToHit = len(self.body) == 1
-
-        if validDirection and (not oppositeDirection or noBodyToHit):
+        if self.notHittingBody(newDirection):
             self.direction = newDirection
+
+    # | notHittingBody()
+    # |----------------------------------------------------------------------------------
+    # | Returns a boolean indicating whether or not the proposed direction will place
+    # | the snake's head into it's neck (the segment behind the head), to determine
+    # | whether or not the proposed direction is safe for the snake to go in.
+    # |------------------------------------------------------------------
+    def notHittingBody(self, direction):
+        if len(self.body) == 1:
+            return True
+
+        head = self.body[-1]
+        headColumn = head.column
+        headRow = head.row
+
+        neck = self.body[-2]
+        neckColumn = neck.column
+        neckRow = neck.row
+
+        # | This is a bit *ugly* but it works for now
+        if direction == 'right':
+            headColumn += 1
+        elif direction == 'left':
+            headColumn -= 1
+        elif direction == 'down':
+            headRow += 1
+        elif direction == 'up':
+            headRow -= 1
+
+        return not (headColumn == neckColumn and headRow == neckRow)
 
     # | die()
     # |--------------------------------------------------------------
