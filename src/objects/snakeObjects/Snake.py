@@ -104,8 +104,7 @@ class Snake():
     # | Kills the snake. Used when the snake hits itself or a wall.
     # |---------------------------------------------------------
     def die(self):
-        DEADSNAKE = Globals.DEADSNAKE
-        deathEvent = pygame.event.Event(DEADSNAKE)
+        deathEvent = pygame.event.Event(Globals.DEADSNAKE)
         pygame.event.post(deathEvent)
 
         self.isAlive = False
