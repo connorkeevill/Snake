@@ -75,9 +75,9 @@ class Page():
         self.paused = True
 
     # | unpause()
-    # |---------------------------------------
-    # | Changes the paused flag to show false
-    # |-----------------------------------
+    # |-----------------------------------------
+    # | Changes the paused flag to show false.
+    # |------------------------------------
     def unpause(self):
         self.paused = False
 
