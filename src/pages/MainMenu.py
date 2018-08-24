@@ -19,7 +19,7 @@ class MainMenu(Page):
         btnPlayAction = "Play"
         btnPlayText = "Play"
         btnPlayTextSize = 28
-        btnPlayTextColour = colours.white
+        btnPlayTextColour = colours.textColour
         self.btnPlay = Button(btnPlayXpos, btnPlayYpos, btnPlayDimensions, btnPlayColour,
                               btnPlayHoverColour, btnPlayAction, btnPlayText, btnPlayTextSize, btnPlayTextColour)
 

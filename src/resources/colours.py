@@ -13,3 +13,4 @@ veryLightGrey = (200, 200, 200)
 # | UI defaults
 buttonColour = lightGrey
 buttonHoverColour = veryLightGrey
+textColour = white

@@ -18,7 +18,7 @@ class Pause(TransparentPage):
         btnResumeAction = "Resume"
         btnResumeText = "Resume"
         btnResumeTextSize = 28
-        btnResumeTextColour = colours.white
+        btnResumeTextColour = colours.textColour
         btnResume = Button(btnResumeXpos, btnResumeYpos, btnResumeDimensions, btnResumeColour, btnResumeHoverColour,
                               btnResumeAction, btnResumeText, btnResumeTextSize, btnResumeTextColour)
 
@@ -32,7 +32,7 @@ class Pause(TransparentPage):
         btnMainMenuAction = "MainMenu"
         btnMainMenuText = "Main Menu"
         btnMainMenuTextSize = 28
-        btnMainMenuTextColour = colours.white
+        btnMainMenuTextColour = colours.textColour
         btnMainMenu = Button(btnMainMenuXpos, btnMainMenuYpos, btnMainMenuDimensions, btnMainMenuColour, btnMainMenuHoverColour,
                               btnMainMenuAction, btnMainMenuText, btnMainMenuTextSize, btnMainMenuTextColour)
 

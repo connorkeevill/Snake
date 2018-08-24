@@ -19,7 +19,7 @@ class GameOver(TransparentPage):
         btnPlayAgainAction = "Play"
         btnPlayAgainText = "Play again"
         btnPlayAgainTextSize = 28
-        btnPlayAgainTextColour = colours.white
+        btnPlayAgainTextColour = colours.textColour
         btnPlayAgain = Button(btnPlayAgainXpos, btnPlayAgainYpos, btnPlayAgainDmensions, btnPlayAgainColour,
                               btnPlayAgainHoverColour, btnPlayAgainAction, btnPlayAgainText, btnPlayAgainTextSize,
                               btnPlayAgainTextColour)
@@ -34,7 +34,7 @@ class GameOver(TransparentPage):
         btnMainMenuAction = "MainMenu"
         btnMainMenuText = "Main Menu"
         btnMainMenuTextSize = 28
-        btnMainMenuTextColour = colours.white
+        btnMainMenuTextColour = colours.textColour
         btnMainMenu = Button(btnMainMenuXpos, btnMainMenuYpos, btnMainMenuDmensions, btnMainMenuColour,
                               btnMainMenuHoverColour, btnMainMenuAction, btnMainMenuText, btnMainMenuTextSize,
                               btnMainMenuTextColour)
@@ -45,7 +45,7 @@ class GameOver(TransparentPage):
         ttlGameOverYpos = 125
         ttlGameOverText = "Game Over!"
         ttlGameOverTextSize = 70
-        ttlGameOverTextColour = colours.red
+        ttlGameOverTextColour = colours.textColour
         ttlGameOver = Title(ttlGameOverXpos, ttlGameOverYpos, ttlGameOverText, ttlGameOverTextSize, ttlGameOverTextColour)
 
         self.addToObjects([btnPlayAgain, btnMainMenu, ttlGameOver])

@@ -59,7 +59,7 @@ class Play(Page):
         btnPauseAction = "Pause"
         btnPauseText = "||"
         btnPauseTextSize = 34
-        btnPauseTextColour = colours.white
+        btnPauseTextColour = colours.textColour
         self.btnPause = Button(btnPauseXpos, btnPauseYpos, btnPauseDimensions, btnPauseColour, btnPauseHoverColour,
                           btnPauseAction, btnPauseText, btnPauseTextSize, btnPauseTextColour)
 
