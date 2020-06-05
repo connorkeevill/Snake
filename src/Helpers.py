@@ -1,8 +1,10 @@
-#CK
+# CK
+
+import sys
 
 import pygame
 from pygame.locals import *
-import sys
+
 
 # | checkForQuit()
 # |-------------------------------------------
@@ -10,9 +12,10 @@ import sys
 # | takes the necessary action for it
 # |-------------------------------
 def checkForQuit(event):
-    if event.type == QUIT:
-        pygame.quit()
-        sys.exit()
+	if event.type == QUIT:
+		pygame.quit()
+		sys.exit()
+
 
 # | createText()
 # |------------------------------------
@@ -21,7 +24,6 @@ def checkForQuit(event):
 # | the text and size as params
 # |------------------------
 def createText(text, size, colour):
-    font = pygame.font.SysFont("ocr a extended", size)
-    text = font.render(text, False, colour)
-    return text
-
+	font = pygame.font.SysFont("ocr a extended", size)
+	text = font.render(text, False, colour)
+	return text

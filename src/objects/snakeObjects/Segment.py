@@ -1,7 +1,8 @@
-#CK
+# CK
 
-from resources import colours
 from objects.items.Item import Item
+from resources import colours
+
 
 # | Segment()
 # |------------------------------------
@@ -9,12 +10,12 @@ from objects.items.Item import Item
 # | up the body of of the snake.
 # |-------------------------
 class Segment(Item):
-    def __init__(self, column, row):
-        Item.__init__(self, column, row)
+	def __init__(self, column, row):
+		Item.__init__(self, column, row)
 
-        self.colour = colours.green
+		self.colour = colours.green
 
-        self.type = 'segment'
+		self.type = 'segment'
 
-    def hitSnake(self, snake):
-        snake.die()
+	def hitSnake(self, snake):
+		snake.die()

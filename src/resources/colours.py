@@ -1,4 +1,4 @@
-#CK
+# CK
 
 # | Colours represented by their RGB values
 black = (0, 0, 0)

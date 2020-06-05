@@ -1,7 +1,9 @@
 # CK
 
-import pygame
 import os
+
+import pygame
+
 import Helpers
 from Router import Router
 
@@ -24,25 +26,24 @@ page = router.route("MainMenu")
 pageToResume = None
 
 while True:
-    page.update()
-    page.draw()
+	page.update()
+	page.draw()
 
-    for event in pygame.event.get():
-        action = page.handleEvent(event)
+	for event in pygame.event.get():
+		action = page.handleEvent(event)
 
-        if action in pages:
-            if action == "Pause":
-                page.pause()
-                pageToResume = page
+		if action in pages:
+			if action == "Pause":
+				page.pause()
+				pageToResume = page
 
-            page = router.route(action)
+			page = router.route(action)
 
-        elif action == "Resume":
-            page = pageToResume
-            page.unpause()
+		elif action == "Resume":
+			page = pageToResume
+			page.unpause()
 
-        Helpers.checkForQuit(event)
+		Helpers.checkForQuit(event)
 
-    pygame.display.update()
-    clock.tick(FPS)
-
+	pygame.display.update()
+	clock.tick(FPS)
